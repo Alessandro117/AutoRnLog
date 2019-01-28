@@ -243,6 +243,8 @@ public class ComputationThread implements Runnable {
 		//get files in lvl1 directory and
 		//create temp ref spectrum
 		////////////////////////////////////////
+		lblProgress1.setText("Creating temporary reference spectrum");
+		lblProgress2.setText("");
 		ArrayList<Spectra> spectraList = new ArrayList<Spectra>();
 		//list all spectra
 	    File folder = new File(lvl1);
@@ -291,7 +293,8 @@ public class ComputationThread implements Runnable {
 		//////////////////////////////////////
 		//Extract logfile
 		//////////////////////////////////////
-		
+		lblProgress1.setText("Creating Extract.txt");
+		lblProgress2.setText("");
 		String extFilename = "extract.txt";
 		
 		//extract spectra from spectra list and write it into extFile
@@ -379,7 +382,8 @@ public class ComputationThread implements Runnable {
 		//create activity file
 		//////////////////////////////////////////////
         String actFilename = "activity.act";
-
+		lblProgress1.setText("Creating activity.act");
+		lblProgress2.setText("");
 		String points = "1";
         //open ext and act file
 		FileReader fileReader;
