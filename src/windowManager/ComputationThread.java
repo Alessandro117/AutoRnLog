@@ -196,6 +196,8 @@ public class ComputationThread implements Runnable {
 				System.exit(1);
 			}
 		}
+		
+		
 		try {
 			TimeUnit.MILLISECONDS.sleep(10000);
 		} catch (InterruptedException e4) {

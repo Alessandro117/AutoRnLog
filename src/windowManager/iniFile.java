@@ -99,8 +99,8 @@ public class iniFile {
 		//IMPORTANTIMPORTANTIMPORTANTIMPORTANTIMPORTANTIMPORTANT
 		////////////////////////////////////////////////////////
 		//Add .getParentFile() for exporting, otherwise .jar does not find the ini
-		//File[] fList = file.listFiles();
-		File[] fList = file.getParentFile().listFiles();
+		File[] fList = file.listFiles();
+		//File[] fList = file.getParentFile().listFiles();
 		
 		
 		for (int i = 0; i< fList.length; i++) {

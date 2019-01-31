@@ -81,8 +81,8 @@ public class telnetTunnel {
 	}
 
 	public ArrayList<String> snd(ArrayList<String> FileList, JProgressBar progressBar, JLabel lblProgress2) throws IOException, InterruptedException {
-		//gets an array of filenames and returns an array von Strings, consisting of the spectra
-		//the strings needs to be safed as spectra
+		//gets an array of filenames and returns an array of Strings, consisting of the spectra
+		//the strings needs to be saved as spectra
 		
 		ArrayList<String> Files = new ArrayList<String>();
 		double progress = 100/FileList.size();
@@ -113,6 +113,9 @@ public class telnetTunnel {
 			writeBuffer.flush();
 			TimeUnit.MILLISECONDS.sleep(500);
 
+			//////////////////////////////////////////////////////////
+			//gather the data
+			///////////////////////////////////////////////////////////
 			int tmp = readBuffer.read();
 			String result="";
 			while(tmp != -1 && readBuffer.ready()) {
@@ -122,43 +125,18 @@ public class telnetTunnel {
 			
 			//////////////////////////////////////////////////////////
 			//compute the correct output string out of the telnet data
+			//by removing linebreaks ("\n") and spaces
 			///////////////////////////////////////////////////////////
-			
-			//split the gathered data at whitespaces (linebreaks and spaces)
-			//kick out everything that is whitespace
-			//String.replace does not work with telnet data as far as I know, thats why I use this workaround
-			ArrayList<String> splittedResult = new ArrayList<String>();
-			for(int i=0; i<result.split("\\s").length; i++) {
-				//filter out the returned "password ?" line from the monitor, as well as empty spaces
-				if(!result.split("\\s")[i].equals("\\s") && !result.split("\\s")[i].trim().isEmpty() &&  !result.split("\\s")[i].trim().contains("?") && !result.split("\\s")[i].trim().contains("Password")) {
-					splittedResult.add(result.split("\\s")[i].trim());
-				}	
+			ArrayList<String> cleanedResult = new ArrayList<String>();
+			for(int i = 0; i<result.split("\n").length; i++) {
+				if(!result.split("\n")[i].isEmpty() && !result.split("\n")[i].contains("Password"))
+					cleanedResult.add(result.split("\n")[i].trim());
 			}
-			if(splittedResult.size()<159) {
-				//retrieved data is not complete
-				//try again if its the first time
-				if(errors == 0) {
-					j = j-1;
-					continue;
-				} else {
-					errors = 1;
-					continue;
-				}
-			}
-			
-			//combine the splitted result into a String, containing the correct line seperators
-			//each line needs to be tested so the finalResult is according to what we need
-			String finalResult = "";
-			for(int i = 0; i< splittedResult.size(); i++) {
-				finalResult += splittedResult.get(i);
-				if(Arrays.asList(0, 3, 134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155, 156, 157).contains(i)) {
-					finalResult+=" ";
-				}
-				if(!Arrays.asList(0, 3, 134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155, 156, 157).contains(i))
-					finalResult += System.lineSeparator();
-			}
-			Files.add(finalResult);
-			System.out.println(finalResult);
+			/*
+			for(int j1 = 0; j1<cleanedResult.size();j1++)
+				System.out.println(cleanedResult.get(j1));
+			*/
+
 		}
 		writeBuffer.close();
 		readBuffer.close();
