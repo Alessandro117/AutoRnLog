@@ -64,7 +64,8 @@ public class Spectra {
 	        LT= LT.substring(0, LT.indexOf(" "));
 	        datetime = lines.get(0);
 	        if(lines.size()==136) {
-	        	edge = Integer.parseInt(lines.get(135));
+	        	if(!lines.get(135).isEmpty())
+	        		edge = Integer.parseInt(lines.get(135));
 	        }
 	        //fill values
 	        for(int i=3; i<131; i++) {

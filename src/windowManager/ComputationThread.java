@@ -197,26 +197,23 @@ public class ComputationThread implements Runnable {
 			}
 		}
 		
-		
-		try {
-			TimeUnit.MILLISECONDS.sleep(10000);
-		} catch (InterruptedException e4) {
-			// TODO Auto-generated catch block
-			e4.printStackTrace();
-		}
 
 		
 		//write spectra String into file
 		//in case several file needs to be gathered -> for loop
+		System.out.println("gathered files: " +files);
 		for(int i=0; i<files.size();i++) {
 			File lvl0Directory = new File(lvl0);
 			File lvl1Directory = new File(lvl1);
 			if(!lvl0Directory.exists()) {
 				//create the lvl0 directory
+				System.out.println(lvl0Directory.exists() + " exisitert nicht");
 				lvl0Directory.mkdirs();
 			}
+			System.out.println(lvl0Directory.getName() + lvl0Directory.getPath() + " exisitert");
 			if(!lvl1Directory.exists()) {
 				//create the lvl0 directory
+				System.out.println(lvl1Directory.exists() + " exisitert nicht");
 				lvl1Directory.mkdirs();
 			}
 			try {			

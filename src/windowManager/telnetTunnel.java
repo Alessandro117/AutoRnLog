@@ -127,16 +127,14 @@ public class telnetTunnel {
 			//compute the correct output string out of the telnet data
 			//by removing linebreaks ("\n") and spaces
 			///////////////////////////////////////////////////////////
-			ArrayList<String> cleanedResult = new ArrayList<String>();
+			String cleanResult = "";
 			for(int i = 0; i<result.split("\n").length; i++) {
-				if(!result.split("\n")[i].isEmpty() && !result.split("\n")[i].contains("Password"))
-					cleanedResult.add(result.split("\n")[i].trim());
+				if(!result.split("\n")[i].isEmpty() && !result.split("\n")[i].contains("Password")) {
+					cleanResult+=result.split("\n")[i].trim() + System.lineSeparator();
+				}
 			}
-			/*
-			for(int j1 = 0; j1<cleanedResult.size();j1++)
-				System.out.println(cleanedResult.get(j1));
-			*/
-
+			
+			Files.add(cleanResult);
 		}
 		writeBuffer.close();
 		readBuffer.close();
