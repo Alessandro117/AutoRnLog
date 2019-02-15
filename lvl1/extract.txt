@@ -1,3 +1,0 @@
-Date Time; Lifetime;ADC1; StdADC1; T1; StdT1;T2; StdT2;T3; StdT3;Rn1;Rn2;Rn3;Rn4;ADC2; StdADC2; ADC3; StdADC3; Counter1;Counter2;FluxSlope;FluxOffset;ADC2Slope;ADC2Offset;ADC3Slope;ADC3Offset;Temp1Slope;Temp1Offset;Temp2Slope;Temp2Offset;Temp3Slope;Temp3Offset;Counter1Slope;Counter1Offset;Counter2Slope;Counter2Offset;ID 
-15.02.2019 12:30:00; 1791; 1391.849; 8.675; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 6928; 47; 704; 100; 0.0; 0.0; 287.979; 2.354; 0.0; 0.0; 27.66999; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 2_Ersatz; 
-15.02.2019 12:00:00; 1799; 1390.646; 8.881; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 7872; 39; 770; 100; 0.0; 0.0; 287.979; 2.352; 0.0; 0.0; 27.66999; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 1.0; 0.0; 2_Ersatz; 
