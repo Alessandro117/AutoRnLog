@@ -196,12 +196,9 @@ public class ComputationThread implements Runnable {
 				System.exit(1);
 			}
 		}
-		
 
-		
 		//write spectra String into file
 		//in case several file needs to be gathered -> for loop
-		System.out.println("gathered files: " +files);
 		for(int i=0; i<files.size();i++) {
 			File lvl0Directory = new File(lvl0);
 			File lvl1Directory = new File(lvl1);

@@ -58,7 +58,13 @@ public class Spectra {
 	            lines.add(line);
 	        }
 	        bufferedReader.close();
-	        monitor = lines.get(131);
+	        System.out.println("read in spectra with " + lines.size() + "lines");
+	        try {
+	        	monitor = lines.get(131);
+	        } catch (Exception e) {
+	        	System.out.print(lines);
+	        	return;
+	        }
 	        LT = lines.get(2);
 	        //get only the LT as a number (split after first space)
 	        LT= LT.substring(0, LT.indexOf(" "));

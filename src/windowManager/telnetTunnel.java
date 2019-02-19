@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import org.apache.commons.net.telnet.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -19,12 +20,12 @@ public class telnetTunnel {
 	 * unfortunantely the connection has to be redone for every function
 	 * or the connection will be lost.
 	 */
-	
 	public Socket soc = null;
 	public BufferedReader readBuffer = null;
 	public BufferedWriter writeBuffer = null;
 	public String IP = null;
 	public int port = 23;
+	//public TelnetClient soc2 = null;
 	
 	telnetTunnel(String IP, int port) {
 		this.IP = IP;
@@ -90,6 +91,9 @@ public class telnetTunnel {
 		//open socket connection to monitor
 		System.out.println("opening socket");
 		soc = new Socket(IP,port);	
+		//soc2 = new TelnetClient();
+		//soc2.connect(IP);
+		
 		//create buffered writer
 		BufferedReader readBuffer = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 		BufferedWriter writeBuffer = new BufferedWriter(new OutputStreamWriter(soc.getOutputStream()));
@@ -116,11 +120,24 @@ public class telnetTunnel {
 			//////////////////////////////////////////////////////////
 			//gather the data
 			///////////////////////////////////////////////////////////
-			int tmp = readBuffer.read();
+			TimeUnit.MILLISECONDS.sleep(50);
+			int tmp;
 			String result="";
-			while(tmp != -1 && readBuffer.ready()) {
-				result += Character.toString ((char) tmp);
+			TimeUnit.MILLISECONDS.sleep(50);
+			
+			//read telnet buffer byte by byte and convert it to char
+			//if buffer is not ready, wait and try again, if its still not ready, end of file is reached
+			//checking if tmp == -1 does not work
+			
+			while(true) {
 				tmp = readBuffer.read();
+				result += Character.toString ((char) tmp);
+				if(!readBuffer.ready()) {
+					TimeUnit.MILLISECONDS.sleep(70);
+					System.out.println("waiting for telnet buffer");
+					if(!readBuffer.ready())
+						break;
+				}
 			}
 			
 			//////////////////////////////////////////////////////////
@@ -133,7 +150,6 @@ public class telnetTunnel {
 					cleanResult+=result.split("\n")[i].trim() + System.lineSeparator();
 				}
 			}
-			
 			Files.add(cleanResult);
 		}
 		writeBuffer.close();
