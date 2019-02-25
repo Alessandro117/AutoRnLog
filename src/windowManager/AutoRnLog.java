@@ -79,7 +79,7 @@ import java.awt.Window.Type;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
-public class RnLog extends JFrame {
+public class AutoRnLog extends JFrame {
 
 	/**
 	 * 
@@ -102,7 +102,7 @@ public class RnLog extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RnLog frame = new RnLog();
+					AutoRnLog frame = new AutoRnLog();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -114,7 +114,7 @@ public class RnLog extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RnLog() {
+	public AutoRnLog() {
 		getContentPane().setBackground(Color.WHITE);
 		setResizable(false);
 		setBackground(Color.RED);

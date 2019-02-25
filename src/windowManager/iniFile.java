@@ -88,7 +88,7 @@ public class iniFile {
 		//get the ini file of the working directory if possible
 		File file;
 		try {
-			file = new File(RnLog.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			file = new File(AutoRnLog.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -338,7 +338,7 @@ public class iniFile {
 		//create a new ini file out of standard values
 		File newIni = null;
 		try {
-			newIni = new File(RnLog.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			newIni = new File(AutoRnLog.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
