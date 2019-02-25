@@ -91,8 +91,6 @@ public class telnetTunnel {
 		//open socket connection to monitor
 		System.out.println("opening socket");
 		soc = new Socket(IP,port);	
-		//soc2 = new TelnetClient();
-		//soc2.connect(IP);
 		
 		//create buffered writer
 		BufferedReader readBuffer = new BufferedReader(new InputStreamReader(soc.getInputStream()));
@@ -106,7 +104,6 @@ public class telnetTunnel {
 		////////////////////////////////////
 		//get the spectra for every filename
 		////////////////////////////////////
-		int errors = 0;
 		for(int j = 0; j< FileList.size(); j++) {
 			progressBar.setValue((int) progress * (j+1));
 			lblProgress2.setText("Getting " + FileList.get(j));
